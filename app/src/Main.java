@@ -1,6 +1,8 @@
 package src;
 
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
 import src.model.ModelCarro;
 import src.model.ModelCorrida;
 
@@ -32,21 +34,28 @@ public class Main {
 		System.out.println(carroA.toString());
 		System.out.println(carroB.toString());
 
-		System.out.println("=> Pista: ");
-		System.out.println("=".repeat(comprimentoPista) + "\n\n");
+		System.out.println("\n=> Pista: ");
+		System.out.println("=".repeat(comprimentoPista));
+		System.out.println("A \nB");
 		System.out.println("=".repeat(comprimentoPista));
 
 		while (corrida.getComprimentoCarroA() < comprimentoPista) {
-			System.out.println("=> Pista: ");
+
+			try {
+				TimeUnit.SECONDS.sleep(1);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			System.out.println("\n=> Pista: ");
 			System.out.println("=".repeat(comprimentoPista));
 
 			// carroA
 			corrida.setComprimentoCarroA(corrida.getComprimentoCarroA() + gerador.nextInt(4));
-			System.out.println("-".repeat(corrida.getComprimentoCarroA()));
+			System.out.println("-".repeat(corrida.getComprimentoCarroA()) + "A");
 
 			// carroB
 			corrida.setComprimentoCarroB(corrida.getComprimentoCarroB() + gerador.nextInt(4));
-			System.out.println("-".repeat(corrida.getComprimentoCarroB()));
+			System.out.println("-".repeat(corrida.getComprimentoCarroB()) + "B");
 
 			System.out.println("=".repeat(comprimentoPista));
 		}
