@@ -1,6 +1,5 @@
 package src;
 
-import java.util.Random;
 import src.model.ModelCarro;
 
 /**

@@ -14,6 +14,15 @@ public class ModelCarro {
 	private String cor;
 	private String patrocinadores;
 
+	/**
+	 * Construtor 
+	 * 
+	 * @param codigo
+	 * @param nome
+	 * @param piloto
+	 * @param cor
+	 * @param patrocinadores
+	 */
 	public ModelCarro(
 		int codigo, 
 		String nome, 
