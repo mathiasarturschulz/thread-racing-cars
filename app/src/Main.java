@@ -1,10 +1,7 @@
 package src;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
-
 import src.model.ModelCarro;
-import src.model.ModelCorrida;
 
 /**
  * Classe principal do projeto
@@ -14,50 +11,46 @@ import src.model.ModelCorrida;
  */
 public class Main {
 
-	static int i;
-
 	/**
 	 * Método main do projeto
 	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		try {
+			int comprimentoPista = 200;
 
-		Random gerador = new Random();
+			ModelCarro carroA = new ModelCarro(1, "CarroA", "João Barion", "Preto", "Monster,NANDO,WD-40,Drift-HQ");
+			ModelCarro carroB = new ModelCarro(2, "CarroB", "Marcio Kabeça", "Branco/Preto", "Pneu-Store,Inje-Pro");
+		
+			System.out.println("\n=> Iniciando a corrida Super Drift Brasil 2020 ");
+			System.out.println("\nA pista possui um comprimento de " + comprimentoPista + " metros ");
+			Thread.sleep(2000);
 
-		int comprimentoPista = 200;
-		ModelCarro carroA = new ModelCarro(1, "CarroA", "João Barion", "Preto", "Monster,NANDO,WD-40,Drift-HQ");
-		ModelCarro carroB = new ModelCarro(2, "CarroB", "Marcio Kabeça", "Branco/Preto", "Pneu-Store,Inje-Pro");
-		ModelCorrida corrida = new ModelCorrida(1, "Super Drift Brasil 2020", comprimentoPista, carroA, carroB);
+			System.out.println("\n=> Os competidores são: ");
+			System.out.println(carroA.toString());
+			System.out.println(carroB.toString());
+			Thread.sleep(2000);
 
-		System.out.println("Iniciando a corrida " + corrida.getNome());
-		System.out.println(carroA.toString());
-		System.out.println(carroB.toString());
-
-		System.out.println("\n=> Pista: ");
-		System.out.println("=".repeat(comprimentoPista));
-		System.out.println("A \nB");
-		System.out.println("=".repeat(comprimentoPista));
-
-		while (corrida.getComprimentoCarroA() < comprimentoPista) {
-
-			try {
-				TimeUnit.SECONDS.sleep(1);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 			System.out.println("\n=> Pista: ");
 			System.out.println("=".repeat(comprimentoPista));
-
-			// carroA
-			corrida.setComprimentoCarroA(corrida.getComprimentoCarroA() + gerador.nextInt(4));
-			System.out.println("-".repeat(corrida.getComprimentoCarroA()) + "A");
-
-			// carroB
-			corrida.setComprimentoCarroB(corrida.getComprimentoCarroB() + gerador.nextInt(4));
-			System.out.println("-".repeat(corrida.getComprimentoCarroB()) + "B");
-
+			System.out.println("A \nB");
 			System.out.println("=".repeat(comprimentoPista));
+
+			ThreadCarro threadCarroA = new ThreadCarro(comprimentoPista, carroA);
+			threadCarroA.start();
+
+			ThreadCarro threadCarroB = new ThreadCarro(comprimentoPista, carroB);
+			threadCarroB.start();
+
+			// realiza um join com o objetivo de sincronizar as thread, onde a thread atual espera as outras
+			threadCarroA.join();
+			threadCarroB.join();
+
+			System.out.println("Corrida finalizada! ");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }
