@@ -14,6 +14,7 @@ public class ThreadCarro extends Thread {
 	private int comprimentoPista;
 	private ModelCarro modelCarro;
 	private Random gerador;
+	private int qtdRepeticoes;
 
 	/**
 	 * Construtor
@@ -25,6 +26,7 @@ public class ThreadCarro extends Thread {
 		this.gerador = new Random();
 		this.comprimentoPista = comprimentoPista;
 		this.modelCarro = modelCarro;
+		this.qtdRepeticoes = 0;
 	}
 
 	/**
@@ -38,11 +40,25 @@ public class ThreadCarro extends Thread {
 	 * Método que realiza a corrida na pista de um determinado carro e apresenta a distancia do carro
 	 */
 	public void iniciaCorridaCarroAtual() {
-		int distanciaCarro = 0;
-		// o carro continua correndo na pista enquanto não atravessou a chegada
-		while (distanciaCarro < comprimentoPista) {
-			distanciaCarro += gerador.nextInt(4);
-			System.out.println("-".repeat(distanciaCarro) + this.modelCarro.getNome());
+		try {
+			int distanciaCarro = 0;
+			// o carro continua correndo na pista enquanto não atravessou a chegada
+			while (distanciaCarro < comprimentoPista) {
+				distanciaCarro += gerador.nextInt(4);
+				if (distanciaCarro > comprimentoPista) {
+					distanciaCarro = 200;
+				}
+				System.out.println("-".repeat(distanciaCarro) + this.modelCarro.getNome() + " (" + distanciaCarro + "m)");
+				this.qtdRepeticoes++;
+				Thread.sleep(1);
+			}
+			System.out.println("Carro " + this.modelCarro.getNome() + " atravessou a chegada! ");
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
+	}
+
+	public int getQtdRepeticoes() {
+		return qtdRepeticoes;
 	}
 }

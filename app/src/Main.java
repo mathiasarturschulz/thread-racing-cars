@@ -31,11 +31,6 @@ public class Main {
 			System.out.println(carroB.toString());
 			Thread.sleep(2000);
 
-			System.out.println("\n=> Pista: ");
-			System.out.println("=".repeat(comprimentoPista));
-			System.out.println("A \nB");
-			System.out.println("=".repeat(comprimentoPista));
-
 			ThreadCarro threadCarroA = new ThreadCarro(comprimentoPista, carroA);
 			threadCarroA.start();
 
@@ -46,10 +41,27 @@ public class Main {
 			threadCarroA.join();
 			threadCarroB.join();
 
-			System.out.println("Corrida finalizada! ");
+			System.out.println("\n=> Corrida finalizada! ");
+			System.out.println(threadCarroA.getQtdRepeticoes());
+			System.out.println(threadCarroB.getQtdRepeticoes());
+			
+//			if (threadCarroA.getQtdRepeticoes() > threadCarroB.getQtdRepeticoes()) {
+//				System.out.println();
+//			}
+			
+
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	public void apresentaColocacoes(int qtdRepeticoesCarroA, int qtdRepeticoesCarroB) {
+		String primeiroLugar = "";
+		String segundoLugar = "";
+		if (qtdRepeticoesCarroA > qtdRepeticoesCarroB) {
+			
 		}
 	}
 }
