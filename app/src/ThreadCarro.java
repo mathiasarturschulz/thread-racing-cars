@@ -46,11 +46,11 @@ public class ThreadCarro extends Thread {
 			while (distanciaCarro < comprimentoPista) {
 				distanciaCarro += gerador.nextInt(4);
 				if (distanciaCarro > comprimentoPista) {
-					distanciaCarro = 200;
+					distanciaCarro = comprimentoPista;
 				}
 				System.out.println("-".repeat(distanciaCarro) + this.modelCarro.getNome() + " (" + distanciaCarro + "m)");
 				this.qtdRepeticoes++;
-				Thread.sleep(1);
+				Thread.sleep(200);
 			}
 			System.out.println("Carro " + this.modelCarro.getNome() + " atravessou a chegada! ");
 		} catch (InterruptedException e) {
@@ -60,5 +60,9 @@ public class ThreadCarro extends Thread {
 
 	public int getQtdRepeticoes() {
 		return qtdRepeticoes;
+	}
+	
+	public ModelCarro getModelCarro() {
+		return modelCarro;
 	}
 }
