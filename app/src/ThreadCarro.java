@@ -4,7 +4,7 @@ import java.util.Random;
 import src.model.ModelCarro;
 
 /**
- * Classe que representa as operações com da entidade corrida
+ * Classe que representa as operações com a thread do carro
  * 
  * @author Mathias Artur Schulz
  * @since 15/11/2020

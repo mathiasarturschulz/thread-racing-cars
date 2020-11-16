@@ -52,7 +52,6 @@ public class Main {
 			System.out.println("\n=> Corrida finalizada! ");
 			apresentaColocacoes(carrosThread);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -82,6 +81,5 @@ public class Main {
 		for (int i = 0; i < carrosThread.length; i++) {
 			System.out.println((i + 1) + "º colocado: " + carrosThread[i].getModelCarro().getNome());
 		}
-		
 	}
 }
