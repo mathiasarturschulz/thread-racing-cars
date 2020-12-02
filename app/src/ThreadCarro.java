@@ -1,6 +1,8 @@
 package src;
 
 import java.util.Random;
+
+import src.controller.ControllerPiStop;
 import src.model.ModelCarro;
 
 /**
@@ -74,19 +76,12 @@ public class ThreadCarro extends Thread {
 
 		if (combustivelCarro <= 10) {
 			System.out.println("Entrando no pitstop... ");
-			combustivelCarro = pitStop(combustivelCarro);
+			combustivelCarro = ControllerPiStop.pitStop(modelCarro, combustivelCarro);
+//			combustivelCarro = pitStop(combustivelCarro);
 		}
 
 		// quando o combustível atual do carro é menor ou igual a 10 entra no pitstop
 		
-		return combustivelCarro;
-	}
-
-	private synchronized float pitStop(float combustivelCarro) throws InterruptedException {
-		// acrescenta 50 litros
-		combustivelCarro += 50;
-
-		Thread.sleep(500);
 		return combustivelCarro;
 	}
 
