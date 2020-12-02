@@ -23,11 +23,11 @@ public class Main {
 
 			// cria o arraylist
 			List<ModelCarro> carros = new ArrayList<ModelCarro>();
-			carros.add(new ModelCarro(1, "Mustang Fastback 1965", "João Barion", "Preto", "Monster;WD-40;Drift HQ;", (float) 99.9));
-			carros.add(new ModelCarro(2, "BMW E36", "Marcio Kabeça", "Branco/Preto", "Pneu Store;InjePro;", (float) 99.9));
-			carros.add(new ModelCarro(2, "Nissan 350z", "Bruno Bar", "Camaleão", "WD-40;Pneu Store;InjePro;", (float) 99.9));
-			carros.add(new ModelCarro(2, "Mazda RX-7", "Mad Mike", "Preto", "Red Bull;", (float) 99.9));
-			carros.add(new ModelCarro(2, "Mustang RTR", "Vaughn Gittin Jr.", "Preto", "Ford;Monster;", (float) 99.9));
+			carros.add(new ModelCarro(1, "Mustang Fastback 1965", "João Barion", "Preto", "Monster;WD-40;Drift HQ;", (float) 59.9));
+			carros.add(new ModelCarro(2, "BMW E36", "Marcio Kabeça", "Branco/Preto", "Pneu Store;InjePro;", (float) 59.9));
+			carros.add(new ModelCarro(2, "Nissan 350z", "Bruno Bar", "Camaleão", "WD-40;Pneu Store;InjePro;", (float) 59.9));
+			carros.add(new ModelCarro(2, "Mazda RX-7", "Mad Mike", "Preto", "Red Bull;", (float) 59.9));
+			carros.add(new ModelCarro(2, "Mustang RTR", "Vaughn Gittin Jr.", "Preto", "Ford;Monster;", (float) 59.9));
 
 			System.out.println("\n=> Iniciando a corrida Super Drift Brasil 2020 ");
 			System.out.println("\nA pista possui um comprimento de " + comprimentoPista + " metros ");
