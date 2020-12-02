@@ -16,6 +16,7 @@ public class ModelCarro {
 	private float combustivel;
 
 	/**
+	 * Construtor
 	 * 
 	 * @param codigo
 	 * @param nome
