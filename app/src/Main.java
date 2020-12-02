@@ -1,5 +1,7 @@
 package src;
 
+import java.util.ArrayList;
+import java.util.List;
 import src.model.ModelCarro;
 
 /**
@@ -19,12 +21,14 @@ public class Main {
 		try {
 			int comprimentoPista = 150;
 			int quantidadeCarros = 3;
-			
-			// cria o array
-			ModelCarro[] carros = new ModelCarro[quantidadeCarros];
-			carros[0] = new ModelCarro(1, "350z-Barion", "João Barion", "Preto", "Monster,NANDO,WD-40,Drift-HQ");
-			carros[1] = new ModelCarro(2, "BMW-Kabeca", "Marcio Kabeça", "Branco/Preto", "Pneu-Store,Inje-Pro");
-			carros[2] = new ModelCarro(2, "350z-Bar", "Bruno Bar", "Preto", "WD-40,Pneu-Store,Inje-Pro");
+
+			// cria o arraylist
+			List<ModelCarro> carros = new ArrayList<ModelCarro>();
+			carros.add(new ModelCarro(1, "Mustang Fastback 1965", "João Barion", "Preto", "Monster;WD-40;Drift HQ;", (float) 99.9));
+			carros.add(new ModelCarro(2, "BMW E36", "Marcio Kabeça", "Branco/Preto", "Pneu Store;InjePro;", (float) 99.9));
+			carros.add(new ModelCarro(2, "Nissan 350z", "Bruno Bar", "Camaleão", "WD-40;Pneu Store;InjePro;", (float) 99.9));
+			carros.add(new ModelCarro(2, "Mazda RX-7", "Mad Mike", "Preto", "Red Bull;", (float) 99.9));
+			carros.add(new ModelCarro(2, "Mustang RTR", "Vaughn Gittin Jr.", "Preto", "Ford;Monster;", (float) 99.9));
 
 			System.out.println("\n=> Iniciando a corrida Super Drift Brasil 2020 ");
 			System.out.println("\nA pista possui um comprimento de " + comprimentoPista + " metros ");
@@ -38,10 +42,10 @@ public class Main {
 			Thread.sleep(2000);
 
 			// inicia uma thread para cada carro da corrida
-			ThreadCarro[] carrosThread = new ThreadCarro[quantidadeCarros];
-			for (int i = 0; i < carrosThread.length; i++) {
-				carrosThread[i] = new ThreadCarro(comprimentoPista, carros[i]);
-				carrosThread[i].start();
+			List<ThreadCarro> carrosThread = new ArrayList<ThreadCarro>();
+			for (int i = 0; i < carros.size(); i++) {
+				carrosThread.add(new ThreadCarro(comprimentoPista, carros.get(i)));
+				carrosThread.get(i).start();
 			}
 
 			// realiza um join com o objetivo de sincronizar as threads
@@ -55,7 +59,7 @@ public class Main {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Método responsável por mostrar as colocações dos carros
 	 * Utiliza como base a quantidade de repetições utilizadas para atravessar a chegada
@@ -63,23 +67,23 @@ public class Main {
 	 * 
 	 * @param carrosThread
 	 */
-	public static void apresentaColocacoes(ThreadCarro[] carrosThread) {
+	private static void apresentaColocacoes(List<ThreadCarro> carrosThread) {
 		// realiza uma ordenação pela quantidade de repetições
 		ThreadCarro temp = null;
-		for (int i = 0; i < carrosThread.length; i++) {
-			for (int j = i+1; j < carrosThread.length; j++) {
-				if (carrosThread[i].getQtdRepeticoes() > carrosThread[j].getQtdRepeticoes()) {
-					temp = carrosThread[i];
-					carrosThread[i] = carrosThread[j];
-					carrosThread[j] = temp;
+		for (int i = 0; i < carrosThread.size(); i++) {
+			for (int j = i+1; j < carrosThread.size(); j++) {
+				if (carrosThread.get(i).getQtdRepeticoes() > carrosThread.get(j).getQtdRepeticoes()) {
+					temp = carrosThread.get(i);
+					carrosThread.set(i, carrosThread.get(j));
+					carrosThread.set(j, temp);
 				}
 			}
 		}
 
 		// apresenta as colocações
 		System.out.println("\n=> COLOCAÇÕES: ");
-		for (int i = 0; i < carrosThread.length; i++) {
-			System.out.println((i + 1) + "º colocado: " + carrosThread[i].getModelCarro().getNome());
+		for (int i = 0; i < carrosThread.size(); i++) {
+			System.out.println((i + 1) + "º colocado: " + carrosThread.get(i).getModelCarro().getNome());
 		}
 	}
 }
