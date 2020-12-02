@@ -20,7 +20,6 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			int comprimentoPista = 150;
-			int quantidadeCarros = 3;
 
 			// cria o arraylist
 			List<ModelCarro> carros = new ArrayList<ModelCarro>();
@@ -83,7 +82,10 @@ public class Main {
 		// apresenta as colocações
 		System.out.println("\n=> COLOCAÇÕES: ");
 		for (int i = 0; i < carrosThread.size(); i++) {
-			System.out.println((i + 1) + "º colocado: " + carrosThread.get(i).getModelCarro().getNome());
+			System.out.println(
+					(i + 1) + "º colocado: " + carrosThread.get(i).getModelCarro().getPiloto() 
+					+ " (" + carrosThread.get(i).getModelCarro().getNome() + ") "
+			);
 		}
 	}
 }
