@@ -13,28 +13,31 @@ public class ModelCarro {
 	private String piloto;
 	private String cor;
 	private String patrocinadores;
+	private float combustivel;
 
 	/**
-	 * Construtor 
 	 * 
 	 * @param codigo
 	 * @param nome
 	 * @param piloto
 	 * @param cor
 	 * @param patrocinadores
+	 * @param combustivel
 	 */
 	public ModelCarro(
 		int codigo, 
 		String nome, 
 		String piloto,
 		String cor, 
-		String patrocinadores
+		String patrocinadores,
+		float combustivel
 	) {
 		this.codigo = codigo;
 		this.nome = nome;
 		this.piloto = piloto;
 		this.cor = cor;
 		this.patrocinadores = patrocinadores;
+		this.combustivel = combustivel;
 	}
 
 	public int getCodigo() {
@@ -77,6 +80,14 @@ public class ModelCarro {
 		this.patrocinadores = patrocinadores;
 	}
 
+	public float getCombustivel() {
+		return combustivel;
+	}
+
+	public void setCombustivel(float combustivel) {
+		this.combustivel = combustivel;
+	}
+
 	@Override
 	public String toString() {
 		return "Carro [codigo=" + codigo 
@@ -84,6 +95,7 @@ public class ModelCarro {
 			+ ", piloto=" + piloto 
 			+ ", cor=" + cor 
 			+ ", patrocinadores=" + patrocinadores
+			+ ", combustivel=" + combustivel
 		+ "]";
 	}	
 }
