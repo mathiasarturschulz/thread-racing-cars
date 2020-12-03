@@ -10,7 +10,7 @@ import src.model.ModelCarro;
  */
 public class ControllerPitStop {
 
-	private final static float QTD_PARA_REABASTECER = 60;
+	private final static float QTD_PARA_REABASTECER = 50;
 
 	/**
 	 * Método responsável por realizar o pit stop do carro atual
