@@ -61,7 +61,7 @@ public class ThreadCarro extends Thread {
 
 				Thread.sleep(200);
 			}
-			System.out.println("Carro " + this.modelCarro.getNome() + " atravessou a chegada! ");
+			System.out.println("[CHEGADA] Carro " + this.modelCarro.getNome() + " atravessou a chegada! ");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
