@@ -1,8 +1,7 @@
 package src;
 
 import java.util.Random;
-
-import src.controller.ControllerPiStop;
+import src.controller.ControllerPitStop;
 import src.model.ModelCarro;
 
 /**
@@ -25,9 +24,9 @@ public class ThreadCarro extends Thread {
 	 * @param modelCarro
 	 */
 	public ThreadCarro(int comprimentoPista, ModelCarro modelCarro) {
-		this.gerador = new Random();
 		this.comprimentoPista = comprimentoPista;
 		this.modelCarro = modelCarro;
+		this.gerador = new Random();
 		this.qtdRepeticoes = 0;
 	}
 
@@ -57,7 +56,7 @@ public class ThreadCarro extends Thread {
 				System.out.println("-".repeat(distanciaCarro) + this.modelCarro.getNome() + " (" + distanciaCarro + "m)" + "Com.: " + combustivelCarro + "LT");
 				this.qtdRepeticoes++;
 
-				// atualiza o combustivel e valida se necessita de pitstop
+				// atualiza o combustivel e valida se necessita de pit stop
 				combustivelCarro = atualizaCombustivel(combustivelCarro);
 
 				Thread.sleep(200);
@@ -68,20 +67,24 @@ public class ThreadCarro extends Thread {
 		}
 	}
 
+	/**
+	 * Método responsável por atualizar a quantidade de combustível no carro
+	 * Se necessário, chama a operação de pit stop
+	 * 
+	 * @param combustivelCarro
+	 * @return
+	 * @throws InterruptedException
+	 */
 	private float atualizaCombustivel(float combustivelCarro) throws InterruptedException {
 		// gera um valor aleatório simulando o gasto de combustível
-		int combustivelGasto = gerador.nextInt(10);
+		combustivelCarro -= gerador.nextInt(10);
 
-		combustivelCarro -= combustivelGasto;
-
+		// se o carro possui menos de 10 litros de combustível espera para entrar no pit stop
 		if (combustivelCarro <= 10) {
-			System.out.println("Entrando no pitstop... ");
-			combustivelCarro = ControllerPiStop.pitStop(modelCarro, combustivelCarro);
-//			combustivelCarro = pitStop(combustivelCarro);
+			System.out.println("+ " + modelCarro.getPiloto() + " (" + modelCarro.getNome() + ") está tentanto entrar no pit stop... ");
+			combustivelCarro = ControllerPitStop.pitStop(modelCarro, combustivelCarro);
 		}
 
-		// quando o combustível atual do carro é menor ou igual a 10 entra no pitstop
-		
 		return combustivelCarro;
 	}
 
